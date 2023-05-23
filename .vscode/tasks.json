@@ -1,0 +1,159 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "windows": {
+        "options": {
+            "shell": {
+                "executable": "cmd.exe",
+                "args": [
+                    "/C",
+                    // The path to VsDevCmd.bat depends on the version of Visual Studio you have installed.
+                    "C:\\Program^ Files^ ^(x86^)\\Microsoft^ Visual^ Studio\\2022\\BuildTools\\Common7\\Tools\\VsDevCmd.bat",
+                    "&&"
+                ]
+            }
+        }
+    },
+    "tasks": [
+        {
+            "label": "Build|All|Release",
+            "type": "shell",
+            "command": ".\\build.bat",
+            "args": [
+                "all",
+                "Release"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+        },
+        {
+            "label": "Build|All|Debug",
+            "type": "shell",
+            "command": ".\\build.bat",
+            "args": [
+                "all",
+                "Debug"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+        },
+        {
+            "label": "Build|oneVPL|Release",
+            "type": "shell",
+            "command": ".\\build.bat",
+            "args": [
+                "onevpl",
+                "Release"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+        },
+        {
+            "label": "Build|oneVPL|Debug",
+            "type": "shell",
+            "command": ".\\build.bat",
+            "args": [
+                "onevpl",
+                "Debug"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+        },
+        {
+            "label": "Build|LibVA|Release",
+            "type": "shell",
+            "command": ".\\build.bat",
+            "args": [
+                "libva",
+                "Release"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+        },
+        {
+            "label": "Build|LibVA|Debug",
+            "type": "shell",
+            "command": ".\\build.bat",
+            "args": [
+                "libva",
+                "Debug"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+        },
+        {
+            "label": "Build|Mesa|Release",
+            "type": "shell",
+            "command": ".\\build.bat",
+            "args": [
+                "mesa",
+                "Release"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+        },
+        {
+            "label": "Build|Mesa|Debug",
+            "type": "shell",
+            "command": ".\\build.bat",
+            "args": [
+                "mesa",
+                "Debug"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+        },
+       {
+            "label": "Clean|build|All",
+            "type": "shell",
+            "command": "rm",
+            "args": [
+                "-r",
+                "-f",
+                "_build"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+        },
+        {
+            "label": "Clean|install|All",
+            "type": "shell",
+            "command": "rm",
+            "args": [
+                "-r",
+                "-f",
+                "_install"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+        },
+        {
+            "label": "Clean|All",
+            "type": "shell",
+            "dependsOrder": "sequence",
+            "dependsOn": ["Clean|build|All", "Clean|install|All"]
+        }
+
+    ]
+}
