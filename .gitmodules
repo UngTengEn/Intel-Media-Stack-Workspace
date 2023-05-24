@@ -1,0 +1,12 @@
+[submodule "oneVPL"]
+	path = oneVPL
+	url = https://github.com/oneapi-src/oneVPL.git
+[submodule "libva"]
+	path = libva
+	url = https://github.com/intel/libva.git
+[submodule "libva-utils"]
+	path = libva-utils
+	url = https://github.com/intel/libva-utils.git
+[submodule "mesa"]
+	path = mesa
+	url = https://github.com/Mesa3D/mesa.git
