@@ -123,10 +123,10 @@
        {
             "label": "Clean|build|All",
             "type": "shell",
-            "command": "rm",
+            "command": "rmdir",
             "args": [
-                "-r",
-                "-f",
+                "/S",
+                "/Q",
                 "_build"
             ],
             "group": "build",
@@ -137,10 +137,10 @@
         {
             "label": "Clean|install|All",
             "type": "shell",
-            "command": "rm",
+            "command": "rmdir",
             "args": [
-                "-r",
-                "-f",
+                "/S",
+                "/Q",
                 "_install"
             ],
             "group": "build",
