@@ -33,7 +33,7 @@ if "%1"=="all" set Continue=T
 if "%1"=="onevpl" set Continue=T
 if "%Continue%"=="F" goto bypass_onevpl
 
-cmake -S oneVPL -B _build\%2\oneVPL -A x64 -D CMAKE_INSTALL_PREFIX="%INSTALL_DIR%"
+cmake -S oneVPL -B _build\%2\oneVPL -A x64 -D CMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -D BUILD_DEV=OFF -D BUILD_DISPATCHER=OFF -D BUILD_SHARED_LIBS=OFF -D INSTALL_EXAMPLE_CODE=OFF
 cmake --build _build\%2\oneVPL --config %2 --target install
 
 :bypass_onevpl
