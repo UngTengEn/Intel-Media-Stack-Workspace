@@ -8,8 +8,7 @@
                 "executable": "cmd.exe",
                 "args": [
                     "/C",
-                    // The path to VsDevCmd.bat depends on the version of Visual Studio you have installed.
-                    "C:\\Program^ Files^ ^(x86^)\\Microsoft^ Visual^ Studio\\2022\\BuildTools\\Common7\\Tools\\VsDevCmd.bat",
+                    ".\\build_env.bat",
                     "&&"
                 ]
             }
@@ -17,12 +16,11 @@
     },
     "tasks": [
         {
-            "label": "Build|All|Release",
+            "label": "Build|All",
             "type": "shell",
             "command": ".\\build.bat",
             "args": [
-                "all",
-                "Release"
+                "all"
             ],
             "group": "build",
             "presentation": {
@@ -30,12 +28,11 @@
             },
         },
         {
-            "label": "Build|All|Debug",
+            "label": "Build|oneVPL",
             "type": "shell",
             "command": ".\\build.bat",
             "args": [
-                "all",
-                "Debug"
+                "onevpl"
             ],
             "group": "build",
             "presentation": {
@@ -43,77 +40,23 @@
             },
         },
         {
-            "label": "Build|oneVPL|Release",
+            "label": "Build|LibVA",
             "type": "shell",
             "command": ".\\build.bat",
             "args": [
-                "onevpl",
-                "Release"
+                "libva"
             ],
             "group": "build",
             "presentation": {
                 "reveal": "silent"
             },
         },
-        {
-            "label": "Build|oneVPL|Debug",
+         {
+            "label": "Build|Mesa",
             "type": "shell",
             "command": ".\\build.bat",
             "args": [
-                "onevpl",
-                "Debug"
-            ],
-            "group": "build",
-            "presentation": {
-                "reveal": "silent"
-            },
-        },
-        {
-            "label": "Build|LibVA|Release",
-            "type": "shell",
-            "command": ".\\build.bat",
-            "args": [
-                "libva",
-                "Release"
-            ],
-            "group": "build",
-            "presentation": {
-                "reveal": "silent"
-            },
-        },
-        {
-            "label": "Build|LibVA|Debug",
-            "type": "shell",
-            "command": ".\\build.bat",
-            "args": [
-                "libva",
-                "Debug"
-            ],
-            "group": "build",
-            "presentation": {
-                "reveal": "silent"
-            },
-        },
-        {
-            "label": "Build|Mesa|Release",
-            "type": "shell",
-            "command": ".\\build.bat",
-            "args": [
-                "mesa",
-                "Release"
-            ],
-            "group": "build",
-            "presentation": {
-                "reveal": "silent"
-            },
-        },
-        {
-            "label": "Build|Mesa|Debug",
-            "type": "shell",
-            "command": ".\\build.bat",
-            "args": [
-                "mesa",
-                "Debug"
+                "mesa"
             ],
             "group": "build",
             "presentation": {
@@ -121,7 +64,7 @@
             },
         },
        {
-            "label": "Clean|build|All",
+            "label": "Clean|build",
             "type": "shell",
             "command": "rmdir",
             "args": [
@@ -135,7 +78,7 @@
             },
         },
         {
-            "label": "Clean|install|All",
+            "label": "Clean|install",
             "type": "shell",
             "command": "rmdir",
             "args": [
@@ -152,7 +95,7 @@
             "label": "Clean|All",
             "type": "shell",
             "dependsOrder": "sequence",
-            "dependsOn": ["Clean|build|All", "Clean|install|All"]
+            "dependsOn": ["Clean|build", "Clean|install"]
         }
 
     ]

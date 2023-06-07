@@ -28,9 +28,13 @@ git clone https://github.com/UngTengEn/Intel-Media-Stack-Windows.git --recursive
 
 Open the workspace in the folder with Visual Studio Code.
 
-In Visual Studio Code menu, goto Terminal > Run Task..., run "Build|All|Release".
+In Visual Studio Code menu, goto Terminal > Run Task..., run "Build|All".
 
 The binaries and programs will build in _install\Release\bin.
+
+Configure most of your build environtments in build_env.bat
+
+Note: make sure most paths consist of only ascii characters and no spaces.
 
 ## Extra Tools
 
@@ -38,7 +42,7 @@ The binaries and programs will build in _install\Release\bin.
 
 1. Open a new Terminal in Visual Studio Code.
 2. Run ".\env.bat" from project root path.  This should set the build environments.
-3. Run ".\build_gstreamer.bat [Release|Debug]".  This will checkout gstreamer and build it.
+3. Run ".\build_gstreamer.bat".  This will checkout gstreamer and build it.
 
 ### FFmpeg
 
@@ -46,4 +50,4 @@ You will need nasm and msys2 (follow [here](https://www.youtube.com/watch?v=OIYG
 
 1. Open a new Terminal in Visual Studio Code. Run ".\env.bat" from project root path.
 2. Then run the msys2_shell.cmd.  This will open a msys2 shell window.
-3. In the msys2 shell window, go to the project root path and run "./build_ffmpeg.sh [Release|Debug]"
+3. In the msys2 shell window, go to the project root path and run "./build_ffmpeg.sh"
