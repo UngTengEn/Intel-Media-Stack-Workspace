@@ -6,6 +6,10 @@ ExtraOpts=" --enable-debug"
 mkdir _extra
 if [ ! -e _extra/ffmpeg ]; then
     git clone --depth 1 --branch master https://github.com/FFmpeg/FFmpeg.git _extra/ffmpeg
+
+#    cd _extra/ffmpeg
+#    git apply ../../patches/ffmpeg/*.patch
+#    cd ../..
 fi
 
 # Correct the "\" characters in path string
