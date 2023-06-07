@@ -2,43 +2,39 @@
 if "%1"=="" goto end
 if "%2"=="" goto end
 
-set RootDir=%cd%
-
 set BuildType=debug
 if "%2"=="Release" set BuildType=release
 if "%2"=="release" set BuildType=release
 
-rem *** Change the install directory prefix and proxies as you wish  ***
-rem set http_proxy=
-rem set https_proxy=
-set InstallDirectoryPrefix=%cd%\_install
-
-set INSTALL_DIR=%InstallDirectoryPrefix%
-if "%2"=="Release" (
-    set INSTALL_DIR=%InstallDirectoryPrefix%\Release
-    mkdir _build\%2
-    mkdir %INSTALL_DIR%
+if "%INSTALL_DIR%" == "" (
+    if "%2"=="Release" (
+        set INSTALL_DIR=%cd%\_install\Release
+    )
+    if "%2"=="Debug" (
+        set INSTALL_DIR=%cd%\_install\Debug
+    )
 )
-if "%2"=="Debug" (
-    set INSTALL_DIR=%InstallDirectoryPrefix%\Debug
-    mkdir _build\%2
-    mkdir %INSTALL_DIR%
-)
+mkdir _build\%2
+mkdir %INSTALL_DIR%
 
-set PATH=%InstallDirectoryPrefix%\Release\bin;%InstallDirectoryPrefix%\Debug\bin;%PATH%
-set InstallDirectoryPrefix=
+set PATH=%INSTALL_DIR%\bin;%INSTALL_DIR%\bin\x86;%PATH%
+set PKG_CONFIG_DIR=%INSTALL_DIR%\lib\pkgconfig;%INSTALL_DIR%\lib\x86\pkgconfig
 
 set Continue=F
 if "%1"=="all" set Continue=T
 if "%1"=="onevpl" set Continue=T
 if "%Continue%"=="F" goto bypass_onevpl
 
-cmake -S oneVPL -B _build\%2\oneVPL -A x64 -D CMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -D BUILD_DEV=OFF -D BUILD_DISPATCHER=OFF -D BUILD_SHARED_LIBS=OFF -D INSTALL_EXAMPLE_CODE=OFF
+set VPL_ARCH=Win32
+
+if "%VSCMD_ARG_TGT_ARCH%"=="x64" set VPL_ARCH="x64"
+
+cmake -S oneVPL -B _build\%2\oneVPL -A %VPL_ARCH% -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%" -D INSTALL_EXAMPLE_CODE=OFF
 cmake --build _build\%2\oneVPL --config %2 --target install
 
-:bypass_onevpl
+set VPL_ARCH=
 
-cd "%RootDir%"
+:bypass_onevpl
 
 set Continue=F
 if "%1"=="all" set Continue=T
@@ -48,19 +44,17 @@ if "%Continue%"=="F" goto bypass_libva
 meson setup _build\%2\libva libva --prefix "%INSTALL_DIR%" --buildtype %BuildType%
 ninja -C _build\%2\libva install
 
-meson setup _build\%2\libva-utils libva-utils --prefix "%INSTALL_DIR%" --buildtype %BuildType% -Dpkg_config_path="%INSTALL_DIR%\lib\pkgconfig"
+meson setup _build\%2\libva-utils libva-utils --prefix "%INSTALL_DIR%" --buildtype %BuildType% -Dpkg_config_path="%PKG_CONFIG_DIR%"
 ninja -C _build\%2\libva-utils install
 
 :bypass_libva
-
-cd "%RootDir%"
 
 set Continue=F
 if "%1"=="all" set Continue=T
 if "%1"=="mesa" set Continue=T
 if "%Continue%"=="F" goto bypass_mesa
 
-meson setup _build\%2\mesa mesa --prefix "%INSTALL_DIR%" --buildtype %BuildType% -Dllvm=disabled -Dplatforms=windows -Dgallium-drivers=d3d12 -Dgallium-va=enabled -Dvideo-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc -Dva-libs-path="%INSTALL_DIR%\lib\dri" -Dpkg_config_path="%INSTALL_DIR%\lib\pkgconfig"
+meson setup _build\%2\mesa mesa --prefix "%INSTALL_DIR%" --buildtype %BuildType% -Dllvm=disabled -Dplatforms=windows -Dgallium-drivers=d3d12 -Dgallium-va=enabled -Dvideo-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc -Dva-libs-path="%INSTALL_DIR%\lib\dri" -Dpkg_config_path="%PKG_CONFIG_DIR%"
 ninja -C _build\%2\mesa install
 
 if exist "%INSTALL_DIR%\bin\vaon12_drv_video.dll" (
@@ -73,6 +67,7 @@ if exist "%INSTALL_DIR%\bin\vaon12_drv_video.dll" (
 :end
 
 set Continue=
-set RootDir=
 set BuildType=
+
+echo %INSTALL_DIR%
 @ECHO ON
