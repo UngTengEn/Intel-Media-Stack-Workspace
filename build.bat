@@ -67,5 +67,4 @@ if exist "%INSTALL_DIR%\bin\vaon12_drv_video.dll" (
 
 set Continue=
 
-echo %INSTALL_DIR%
 @ECHO ON
