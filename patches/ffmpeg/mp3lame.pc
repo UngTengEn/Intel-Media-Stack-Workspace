@@ -1,0 +1,9 @@
+prefix=C:/Users/tung/Projects/VSCode/Intel-Media-Stack-Workspace/_install/Release
+includedir=${prefix}/include
+libdir=${prefix}/lib
+
+Name: mp3lame
+Description: LAME MP3 encoder library
+Version: 3.100
+Libs: -L${libdir} -lmp3lame
+Cflags: -I${includedir}
