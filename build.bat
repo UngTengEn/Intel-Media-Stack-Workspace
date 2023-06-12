@@ -11,7 +11,7 @@ set BuildDir=Debug
 if "%BuildType%"=="release" set BuildDir=Release
 
 if "%INSTALL_DIR%" == "" (
-    set INSTALL_DIR=%cd%\_install\%BuildType%
+    set INSTALL_DIR=%cd%\_install\%BuildDir%
 )
 mkdir _build\%BuildDir%
 mkdir %INSTALL_DIR%
