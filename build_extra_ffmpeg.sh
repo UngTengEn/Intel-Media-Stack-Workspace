@@ -64,9 +64,12 @@ fi
 if [ ! -e _extra/ffmpeg ]; then
     git clone --depth 1 --branch master https://github.com/FFmpeg/FFmpeg.git _extra/ffmpeg
 
-#    cd _extra/ffmpeg
-#    git apply ../../patches/ffmpeg/*.patch
-#    cd ../..
+    cd _extra/ffmpeg
+    git apply ../../patches/ffmpeg/*.patch
+    cd ../..
+
+    cp -f patches/ffmpeg/mp3lame.pc $InstallDir/lib/pkgconfig/.
+    cp -f patches/ffmpeg/unistd.h $InstallDir/include/.
 fi
 
 if [ ! -e _build/$BuildDir/ffmpeg ]; then
@@ -83,7 +86,6 @@ if [ ! -e _build/$BuildDir/ffmpeg ]; then
         --enable-libvpl --enable-d3d11va $ExtraOpts --enable-zlib --enable-shared --enable-static --toolchain=msvc \
         --enable-libfontconfig --enable-libfreetype --enable-libfribidi --enable-libmp3lame --enable-nonfree --enable-libfdk_aac
     make -j$((nproc - 1)) install
-
 
     cd ../../..
 fi
