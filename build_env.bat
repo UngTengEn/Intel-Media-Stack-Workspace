@@ -2,8 +2,6 @@
 
 rem *** Set the default install directory and build type as you wish  ***
 rem set INSTALL_DIR=
-rem set BUILD_TYPE=[Debug or Release]
-set BUILD_TYPE=Release
 
 rem *** Set the proxies if behind firewall  ***
 rem set http_proxy=

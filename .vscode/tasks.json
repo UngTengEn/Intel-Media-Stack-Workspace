@@ -16,55 +16,111 @@
     },
     "tasks": [
         {
-            "label": "Build|All",
+            "label": "Build All | Release",
             "type": "shell",
             "command": ".\\build.bat",
             "args": [
+                "release",
                 "all"
             ],
             "group": "build",
             "presentation": {
                 "reveal": "silent"
-            },
+            }
         },
         {
-            "label": "Build|oneVPL",
+            "label": "Build All | Debug",
             "type": "shell",
             "command": ".\\build.bat",
             "args": [
-                "onevpl"
+                "debug",
+                "all"
             ],
             "group": "build",
             "presentation": {
                 "reveal": "silent"
-            },
+            }
         },
         {
-            "label": "Build|LibVA",
+            "label": "Build VAAPI | Release",
             "type": "shell",
             "command": ".\\build.bat",
             "args": [
-                "libva"
+                "release",
+                "vaapi"
             ],
             "group": "build",
             "presentation": {
                 "reveal": "silent"
-            },
+            }
         },
-         {
-            "label": "Build|Mesa",
+        {
+            "label": "Build VAAPI | Debug",
             "type": "shell",
             "command": ".\\build.bat",
             "args": [
-                "mesa"
+                "debug",
+                "vaapi"
             ],
             "group": "build",
             "presentation": {
                 "reveal": "silent"
-            },
+            }
         },
-       {
-            "label": "Clean|build",
+        {
+            "label": "Build Driver | Release",
+            "type": "shell",
+            "command": ".\\build.bat",
+            "args": [
+                "release",
+                "driver"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            }
+        },
+        {
+            "label": "Build Driver | Debug",
+            "type": "shell",
+            "command": ".\\build.bat",
+            "args": [
+                "debug",
+                "driver"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            }
+        },
+        {
+            "label": "Build VPL | Release",
+            "type": "shell",
+            "command": ".\\build.bat",
+            "args": [
+                "release",
+                "vpl"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            }
+        },
+        {
+            "label": "Build VPL | Debug",
+            "type": "shell",
+            "command": ".\\build.bat",
+            "args": [
+                "debug",
+                "vpl"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            }
+        },
+        {
+            "label": "Clean Build",
             "type": "shell",
             "command": "rmdir",
             "args": [
@@ -75,10 +131,10 @@
             "group": "build",
             "presentation": {
                 "reveal": "silent"
-            },
+            }
         },
         {
-            "label": "Clean|install",
+            "label": "Clean Install Binaries",
             "type": "shell",
             "command": "rmdir",
             "args": [
@@ -89,10 +145,10 @@
             "group": "build",
             "presentation": {
                 "reveal": "silent"
-            },
+            }
         },
         {
-            "label": "Clean|All",
+            "label": "Clean All",
             "type": "shell",
             "dependsOrder": "sequence",
             "dependsOn": ["Clean|build", "Clean|install"]

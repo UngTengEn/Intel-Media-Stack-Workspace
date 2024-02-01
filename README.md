@@ -28,7 +28,7 @@ git clone https://github.com/UngTengEn/Intel-Media-Stack-Windows.git --recursive
 
 Open the workspace in the folder with Visual Studio Code.
 
-In Visual Studio Code menu, goto Terminal > Run Task..., run "Build|All".
+In Visual Studio Code menu, goto Terminal > Run Task..., run "Build All | Release".
 
 The binaries and programs will build in _install\Release\bin.
 
