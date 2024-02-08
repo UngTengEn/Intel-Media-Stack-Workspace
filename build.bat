@@ -13,10 +13,10 @@ set BuildDir=Debug
 if "%BuildType%"=="release" set BuildDir=Release
 
 if "%INSTALL_DIR%" == "" (
-    set INSTALL_DIR=%cd%\_install\%BuildDir%
+    set INSTALL_DIR=%cd%\_install
 )
-mkdir _build\%BuildDir%
-mkdir %INSTALL_DIR%
+if not exist _build\%BuildDir% mkdir _build\%BuildDir%
+if not exist %INSTALL_DIR% mkdir %INSTALL_DIR%
 
 set PATH=%INSTALL_DIR%\bin;%INSTALL_DIR%\bin\x86;%PATH%
 set PKG_CONFIG_DIR=%INSTALL_DIR%\lib\pkgconfig;%INSTALL_DIR%\lib\x86\pkgconfig
@@ -57,11 +57,6 @@ if "%Continue%"=="F" goto bypass_mesa
 
 meson setup _build\%BuildDir%\mesa mesa --prefix "%INSTALL_DIR%" --buildtype %buildtype% -Dllvm=disabled -Dplatforms=windows -Dgallium-drivers=d3d12 -Dgallium-va=enabled -Dvideo-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc -Dva-libs-path="%INSTALL_DIR%\lib\dri" -Dpkg_config_path="%PKG_CONFIG_DIR%"
 ninja -C _build\%BuildDir%\mesa install
-
-if exist "%INSTALL_DIR%\bin\vaon12_drv_video.dll" (
-    mkdir "%INSTALL_DIR%\lib\dri"
-    move "%INSTALL_DIR%\bin\vaon12_drv_video.dll" "%INSTALL_DIR%\lib\dri\."
-)
 
 :bypass_mesa
 
