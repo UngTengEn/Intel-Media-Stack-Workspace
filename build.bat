@@ -33,6 +33,8 @@ if "%VSCMD_ARG_TGT_ARCH%"=="x64" set VPL_ARCH="x64"
 cmake -S oneVPL -B _build\%BuildDir%\oneVPL -A %VPL_ARCH% -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%"  -DCMAKE_BUILD_TYPE="%BuildType%" -D INSTALL_EXAMPLE_CODE=OFF
 cmake --build _build\%BuildDir%\oneVPL --target install
 
+copy /y %INSTALL_DIR%\lib\vpld.lib  %INSTALL_DIR%\lib\vpl.lib
+
 set VPL_ARCH=
 
 :bypass_onevpl
@@ -60,6 +62,8 @@ ninja -C _build\%BuildDir%\DirectX-Headers install
 
 meson setup _build\%BuildDir%\mesa mesa --prefix "%INSTALL_DIR%" --buildtype %buildtype% -Dllvm=disabled -Dplatforms=windows -Dgallium-drivers=d3d12 -Dgallium-va=enabled -Dvideo-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc -Dva-libs-path="%INSTALL_DIR%\lib\dri" -Dpkg_config_path="%PKG_CONFIG_DIR%"
 ninja -C _build\%BuildDir%\mesa install
+
+copy /y %INSTALL_DIR%\lib\z.lib  %INSTALL_DIR%\lib\zlib.lib
 
 :bypass_mesa
 

@@ -1,23 +1,69 @@
 @ECHO OFF
-if "%BuildType%"=="" goto help
-if "%BuildDir%"=="" goto help
-if "%INSTALL_DIR%"=="" goto help
 
-mkdir _extra
+if not exist _extra\ (
+    mkdir _extra
+)
 if not exist _extra\gstreamer\ (
-    git clone --depth 1 --branch main https://gitlab.freedesktop.org/gstreamer/gstreamer.git _extra\gstreamer
+    git clone --depth 1 --branch 1.24.5 https://gitlab.freedesktop.org/gstreamer/gstreamer.git _extra\gstreamer
 ) 
 
-if not exist _build\%BuildDir%\gstreamer (
-    meson setup _build\%BuildDir%\gstreamer  _extra\gstreamer --prefix "%INSTALL_DIR%" --buildtype %BuildType% -Dpkg_config_path="%PKG_CONFIG_DIR%" -Dlibav=disabled -Ddevtools=disabled -Dges=disabled -Drtsp_server=disabled -Dgst-examples=disabled -Dtls=disabled -Dtests=disabled -Dexamples=disabled -Dgst-plugins-base:gl=disabled -Dgst-plugins-bad:gl=disabled -Dgst-plugins-bad:openh264=disabled -Dgst-plugins-bad:msdk=enabled -Dgst-plugins-bad:va=enabled -Dcairo:tests=disabled
-    ninja -C _build\%BuildDir%\gstreamer install
-    copy /Y %INSTALL_DIR%\lib\z.lib  %INSTALL_DIR%\lib\zlib.lib
+if not exist _build\%BuildDir%\gstreamer\ (
+    mkdir _build\%BuildDir%\gstreamer
+)
+
+if "%1"=="" goto help
+
+set BuildType=Debug
+set BuildDir=Debug
+set buildtype=debug
+
+if "%1%"=="RELEASE" set BuildType=Release
+if "%1"=="Release" set BuildType=Release
+if "%1"=="release" set BuildType=Release
+if "%BuildType%"=="Release" set buildtype=release
+
+if "%BuildType%"=="Release" set BuildDir=Release
+
+if "%INSTALL_DIR%" == "" (
+    set INSTALL_DIR=%cd%\_install
+)
+
+if not exist _build\%BuildDir%\gstreamer\gst-main\build.ninja (
+    mkdir _extra\gstreamer\subprojects\gstreamer\subprojects
+    copy /y _extra\gstreamer\subprojects\glib.wrap _extra\gstreamer\subprojects\gstreamer\subprojects\.
+    meson setup _build\%BuildDir%\gstreamer\gst-main  _extra\gstreamer\subprojects\gstreamer --prefix "%INSTALL_DIR%" --buildtype %buildtype% -Dpkg_config_path="%PKG_CONFIG_DIR%" -Dtests=disabled -Dexamples=disabled -Ddoc=disabled
+    ninja -C _build\%BuildDir%\gstreamer\gst-main install
+)
+
+if not exist _build\%BuildDir%\gstreamer\gst-plg-base\build.ninja (
+    meson setup _build\%BuildDir%\gstreamer\gst-plg-base  _extra\gstreamer\subprojects\gst-plugins-base --prefix "%INSTALL_DIR%" --buildtype %buildtype% -Dpkg_config_path="%PKG_CONFIG_DIR%" -Dtests=disabled -Dexamples=disabled -Ddoc=disabled
+    ninja -C _build\%BuildDir%\gstreamer\gst-plg-base install
+)
+
+if not exist _build\%BuildDir%\gstreamer\gst-plg-good\build.ninja (
+    meson setup _build\%BuildDir%\gstreamer\gst-plg-good  _extra\gstreamer\subprojects\gst-plugins-good --prefix "%INSTALL_DIR%" --buildtype %buildtype% -Dpkg_config_path="%PKG_CONFIG_DIR%" -Dtests=disabled -Dexamples=disabled -Ddoc=disabled
+    ninja -C _build\%BuildDir%\gstreamer\gst-plg-good install
+)
+
+if not exist _build\%BuildDir%\gstreamer\gst-plg-ugly\build.ninja (
+    meson setup _build\%BuildDir%\gstreamer\gst-plg-ugly  _extra\gstreamer\subprojects\gst-plugins-ugly --prefix "%INSTALL_DIR%" --buildtype %buildtype% -Dpkg_config_path="%PKG_CONFIG_DIR%" -Dtests=disabled -Ddoc=disabled
+    ninja -C _build\%BuildDir%\gstreamer\gst-plg-ugly install
+)
+
+if not exist _build\%BuildDir%\gstreamer\gst-plg-bad\build.ninja (
+    meson setup _build\%BuildDir%\gstreamer\gst-plg-bad  _extra\gstreamer\subprojects\gst-plugins-bad --prefix "%INSTALL_DIR%" --buildtype %buildtype% -Dpkg_config_path="%PKG_CONFIG_DIR%" -Dmsdk=enabled -Dva=enabled -Dtests=disabled -Dexamples=disabled -Ddoc=disabled
+    ninja -C _build\%BuildDir%\gstreamer\gst-plg-bad install
 )
 
 goto end
 
 :help
-echo Make sure you have run the ".\env.bat" to set the environments.
+echo Usage: build_gstreamer.bat [debug|release]
 
 :end
+
+set BuildType=
+set buildtype=
+set BuildDir=
+
 @ECHO ON
