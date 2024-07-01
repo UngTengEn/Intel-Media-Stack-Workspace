@@ -7,22 +7,15 @@ if not exist _extra\gstreamer\ (
     git clone --depth 1 --branch 1.24.5 https://gitlab.freedesktop.org/gstreamer/gstreamer.git _extra\gstreamer
 ) 
 
-if not exist _build\%BuildDir%\gstreamer\ (
-    mkdir _build\%BuildDir%\gstreamer
-)
-
 if "%1"=="" goto help
 
-set BuildType=Debug
 set BuildDir=Debug
 set buildtype=debug
 
-if "%1%"=="RELEASE" set BuildType=Release
-if "%1"=="Release" set BuildType=Release
-if "%1"=="release" set BuildType=Release
-if "%BuildType%"=="Release" set buildtype=release
-
-if "%BuildType%"=="Release" set BuildDir=Release
+if "%1%"=="RELEASE" set buildtype=release
+if "%1"=="Release" set buildtype=release
+if "%1"=="release" set buildtype=release
+if "%buildtype%"=="release" set BuildDir=Release
 
 if "%INSTALL_DIR%" == "" (
     set INSTALL_DIR=%cd%\_install
@@ -62,7 +55,6 @@ echo Usage: build_gstreamer.bat [debug|release]
 
 :end
 
-set BuildType=
 set buildtype=
 set BuildDir=
 

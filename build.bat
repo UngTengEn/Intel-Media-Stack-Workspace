@@ -1,16 +1,13 @@
 @ECHO OFF
 if "%2"=="" goto end
 
-set BuildType=Debug
+set BuildDir=Debug
 set buildtype=debug
 
-if "%1%"=="RELEASE" set BuildType=Release
-if "%1"=="Release" set BuildType=Release
-if "%1"=="release" set BuildType=Release
-if "%BuildType%"=="Release" set buildtype=release
-
-set BuildDir=Debug
-if "%BuildType%"=="release" set BuildDir=Release
+if "%1%"=="RELEASE" set buildtype=release
+if "%1"=="Release" set buildtype=release
+if "%1"=="release" set buildtype=release
+if "%buildtype%"=="release" set BuildDir=Release
 
 if "%INSTALL_DIR%" == "" (
     set INSTALL_DIR=%cd%\_install
@@ -30,7 +27,7 @@ set VPL_ARCH=Win32
 
 if "%VSCMD_ARG_TGT_ARCH%"=="x64" set VPL_ARCH="x64"
 
-cmake -S oneVPL -B _build\%BuildDir%\oneVPL -A %VPL_ARCH% -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%"  -DCMAKE_BUILD_TYPE="%BuildType%" -D INSTALL_EXAMPLE_CODE=OFF
+cmake -S oneVPL -B _build\%BuildDir%\oneVPL -A %VPL_ARCH% -DCMAKE_INSTALL_PREFIX="%INSTALL_DIR%"  -DCMAKE_BUILD_TYPE="%buildtype%" -D INSTALL_EXAMPLE_CODE=OFF
 cmake --build _build\%BuildDir%\oneVPL --target install
 
 copy /y %INSTALL_DIR%\lib\vpld.lib  %INSTALL_DIR%\lib\vpl.lib
@@ -69,7 +66,6 @@ copy /y %INSTALL_DIR%\lib\z.lib  %INSTALL_DIR%\lib\zlib.lib
 
 :end
 
-set BuildType=
 set buildtype=
 set BuildDir=
 set Continue=
