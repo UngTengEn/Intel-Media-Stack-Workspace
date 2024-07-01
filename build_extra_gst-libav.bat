@@ -13,7 +13,7 @@ if "%BuildType%"=="Release" set buildtype=release
 
 if "%BuildType%"=="Release" set BuildDir=Release
 
-if not exist _build\%BuildDir%\gst-plg-libav/build.ninja (
+if not exist _build\%BuildDir%\gst-plg-libav\build.ninja (
     meson setup _build\%BuildDir%\gst-plg-libav  _extra\gstreamer\subprojects\gst-libav  --prefix "%INSTALL_DIR%" --buildtype %BuildType% -Dpkg_config_path="%PKG_CONFIG_DIR%" -Dtests=disabled -Ddoc=disabled
     ninja -C _build\%BuildDir%\gst-plg-libav install
 )
