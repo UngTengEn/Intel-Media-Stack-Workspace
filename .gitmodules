@@ -13,3 +13,12 @@
 [submodule "DirectX-Headers"]
 	path = DirectX-Headers
 	url = https://github.com/microsoft/DirectX-Headers.git
+[submodule "oneVPL-intel-gpu"]
+	path = oneVPL-intel-gpu
+	url = https://github.com/intel/vpl-gpu-rt.git
+[submodule "media-driver"]
+	path = media-driver
+	url = https://github.com/intel/media-driver.git
+[submodule "gmmlib"]
+	path = gmmlib
+	url = https://github.com/intel/gmmlib.git
