@@ -18,11 +18,13 @@
         {
             "label": "Build All | Release",
             "type": "shell",
-            "command": ".\\build.bat",
-            "args": [
-                "release",
-                "all"
-            ],
+            "windows": {
+                "command": ".\\build.bat",
+                "args": [
+                    "release",
+                    "all"
+                ]
+            },
             "group": "build",
             "presentation": {
                 "reveal": "silent"
@@ -31,11 +33,13 @@
         {
             "label": "Build All | Debug",
             "type": "shell",
-            "command": ".\\build.bat",
-            "args": [
-                "debug",
-                "all"
-            ],
+            "windows": {
+                "command": ".\\build.bat",
+                "args": [
+                    "debug",
+                    "all"
+                ]
+            },
             "group": "build",
             "presentation": {
                 "reveal": "silent"
@@ -44,11 +48,13 @@
         {
             "label": "Build VAAPI | Release",
             "type": "shell",
-            "command": ".\\build.bat",
-            "args": [
-                "release",
-                "vaapi"
-            ],
+            "windows": {
+                "command": ".\\build.bat",
+                "args": [
+                    "release",
+                    "vaapi"
+                ]
+            },
             "group": "build",
             "presentation": {
                 "reveal": "silent"
@@ -57,11 +63,13 @@
         {
             "label": "Build VAAPI | Debug",
             "type": "shell",
-            "command": ".\\build.bat",
-            "args": [
-                "debug",
-                "vaapi"
-            ],
+            "windows": {
+                "command": ".\\build.bat",
+                "args": [
+                    "debug",
+                    "vaapi"
+                ]
+            },
             "group": "build",
             "presentation": {
                 "reveal": "silent"
@@ -70,11 +78,13 @@
         {
             "label": "Build Driver | Release",
             "type": "shell",
-            "command": ".\\build.bat",
-            "args": [
-                "release",
-                "driver"
-            ],
+            "windows": {
+                "command": ".\\build.bat",
+                "args": [
+                    "release",
+                    "driver"
+                ]
+            },
             "group": "build",
             "presentation": {
                 "reveal": "silent"
@@ -83,11 +93,13 @@
         {
             "label": "Build Driver | Debug",
             "type": "shell",
-            "command": ".\\build.bat",
-            "args": [
-                "debug",
-                "driver"
-            ],
+            "windows": {
+                "command": ".\\build.bat",
+                "args": [
+                    "debug",
+                    "driver"
+                ]
+            },
             "group": "build",
             "presentation": {
                 "reveal": "silent"
@@ -96,11 +108,13 @@
         {
             "label": "Build VPL | Release",
             "type": "shell",
-            "command": ".\\build.bat",
-            "args": [
-                "release",
-                "vpl"
-            ],
+            "windows": {
+                "command": ".\\build.bat",
+                "args": [
+                    "release",
+                    "vpl"
+                ]
+            },
             "group": "build",
             "presentation": {
                 "reveal": "silent"
@@ -109,11 +123,13 @@
         {
             "label": "Build VPL | Debug",
             "type": "shell",
-            "command": ".\\build.bat",
-            "args": [
-                "debug",
-                "vpl"
-            ],
+            "windows": {
+                "command": ".\\build.bat",
+                "args": [
+                    "debug",
+                    "vpl"
+                ]
+            },
             "group": "build",
             "presentation": {
                 "reveal": "silent"
@@ -122,12 +138,14 @@
         {
             "label": "Clean Build",
             "type": "shell",
-            "command": "rmdir",
-            "args": [
-                "/S",
-                "/Q",
-                "_build"
-            ],
+            "windows": {
+                "command": "rmdir",
+                "args": [
+                    "/S",
+                    "/Q",
+                    "_build"
+                ]
+            },
             "group": "build",
             "presentation": {
                 "reveal": "silent"
@@ -136,12 +154,14 @@
         {
             "label": "Clean Install Binaries",
             "type": "shell",
-            "command": "rmdir",
-            "args": [
-                "/S",
-                "/Q",
-                "_install"
-            ],
+            "windows": {
+                "command": "rmdir",
+                "args": [
+                    "/S",
+                    "/Q",
+                    "_install"
+                ]
+            },
             "group": "build",
             "presentation": {
                 "reveal": "silent"
