@@ -25,6 +25,13 @@
                     "all"
                 ]
             },
+            "linux": {
+                "command": "./build.sh",
+                "args": [
+                    "release",
+                    "all"
+                ]
+            },
             "group": "build",
             "presentation": {
                 "reveal": "silent"
@@ -35,6 +42,13 @@
             "type": "shell",
             "windows": {
                 "command": ".\\build.bat",
+                "args": [
+                    "debug",
+                    "all"
+                ]
+            },
+            "linux": {
+                "command": "./build.sh",
                 "args": [
                     "debug",
                     "all"
@@ -55,6 +69,13 @@
                     "vaapi"
                 ]
             },
+            "linux": {
+                "command": "./build.sh",
+                "args": [
+                    "release",
+                    "vaapi"
+                ]
+            },
             "group": "build",
             "presentation": {
                 "reveal": "silent"
@@ -65,6 +86,13 @@
             "type": "shell",
             "windows": {
                 "command": ".\\build.bat",
+                "args": [
+                    "debug",
+                    "vaapi"
+                ]
+            },
+            "linux": {
+                "command": "./build.sh",
                 "args": [
                     "debug",
                     "vaapi"
@@ -85,6 +113,13 @@
                     "driver"
                 ]
             },
+            "linux": {
+                "command": "./build.sh",
+                "args": [
+                    "release",
+                    "driver"
+                ]
+            },
             "group": "build",
             "presentation": {
                 "reveal": "silent"
@@ -95,6 +130,13 @@
             "type": "shell",
             "windows": {
                 "command": ".\\build.bat",
+                "args": [
+                    "debug",
+                    "driver"
+                ]
+            },
+            "linux": {
+                "command": "./build.sh",
                 "args": [
                     "debug",
                     "driver"
@@ -115,6 +157,13 @@
                     "vpl"
                 ]
             },
+            "linux": {
+                "command": "./build.sh",
+                "args": [
+                    "release",
+                    "vpl"
+                ]
+            },
             "group": "build",
             "presentation": {
                 "reveal": "silent"
@@ -125,6 +174,13 @@
             "type": "shell",
             "windows": {
                 "command": ".\\build.bat",
+                "args": [
+                    "debug",
+                    "vpl"
+                ]
+            },
+            "linux": {
+                "command": "./build.sh",
                 "args": [
                     "debug",
                     "vpl"
@@ -146,6 +202,13 @@
                     "_build"
                 ]
             },
+            "linux": {
+                "command": "rm",
+                "args": [
+                    "-rf",
+                    "_build"
+                ]
+            },
             "group": "build",
             "presentation": {
                 "reveal": "silent"
@@ -159,6 +222,13 @@
                 "args": [
                     "/S",
                     "/Q",
+                    "_install"
+                ]
+            },
+            "linux": {
+                "command": "rm",
+                "args": [
+                    "-rf",
                     "_install"
                 ]
             },
