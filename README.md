@@ -16,6 +16,7 @@ To build this project on Windows you will need:
 		1. meson
 		2. ninja
 		3. mako
+		4. pyyaml
 	* Add the folder path contains these executable binaries to the system PATH
 - [pkg-config-lite](https://sourceforge.net/projects/pkgconfiglite/files/0.28-1) and [winflexbison](https://github.com/lexxmark/winflexbison/releases/tag/v2.5.25)
 	* Download the windows binaries zip packages and extract them
