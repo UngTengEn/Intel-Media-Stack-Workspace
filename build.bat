@@ -57,7 +57,7 @@ if "%Continue%"=="F" goto bypass_mesa
 meson setup _build\%BuildDir%\DirectX-Headers DirectX-Headers --prefix "%INSTALL_DIR%" --buildtype %buildtype% -Dpkg_config_path="%PKG_CONFIG_DIR%"
 ninja -C _build\%BuildDir%\DirectX-Headers install
 
-meson setup _build\%BuildDir%\mesa mesa --prefix "%INSTALL_DIR%" --buildtype %buildtype% -Dllvm=disabled -Dplatforms=windows -Dgallium-drivers=d3d12 -Dgallium-va=enabled -Dvideo-codecs=vc1dec,h264dec,h264enc,h265dec,h265enc -Dva-libs-path="%INSTALL_DIR%\lib\dri" -Dpkg_config_path="%PKG_CONFIG_DIR%"
+meson setup _build\%BuildDir%\mesa mesa --prefix "%INSTALL_DIR%" --buildtype %buildtype% -Dllvm=disabled -Dplatforms=windows -Dgallium-drivers=d3d12 -Dgallium-va=enabled -Dvideo-codecs=all -Dva-libs-path="%INSTALL_DIR%\lib\dri" -Dpkg_config_path="%PKG_CONFIG_DIR%"
 ninja -C _build\%BuildDir%\mesa install
 
 copy /y %INSTALL_DIR%\lib\z.lib  %INSTALL_DIR%\lib\zlib.lib
