@@ -4,7 +4,7 @@ if not exist _extra\ (
     mkdir _extra
 )
 if not exist _extra\gstreamer\ (
-    git clone --depth 1 --branch 1.24.5 https://gitlab.freedesktop.org/gstreamer/gstreamer.git _extra\gstreamer
+    git clone --depth 1 --branch 1.26.5 https://gitlab.freedesktop.org/gstreamer/gstreamer.git _extra\gstreamer
 ) 
 
 if "%1"=="" goto help

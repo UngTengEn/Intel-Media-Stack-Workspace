@@ -58,7 +58,7 @@ fi
 
 ### Build dav1d ###
 if [ ! -e _extra/dav1d ]; then
-    git clone --depth 1 --branch 1.4.3 https://github.com/videolan/dav1d.git _extra/dav1d
+    git clone --depth 1 --branch 1.5.1 https://github.com/videolan/dav1d.git _extra/dav1d
 fi
 
 if [ ! -e _build/$BuildDir/dav1d/ninja.build ]; then
@@ -69,7 +69,7 @@ fi
 
 ### Build svt-av1 ###
 if [ ! -e _extra/svt-av1 ]; then
-    git clone --depth 1 --branch v2.1.2 https://gitlab.com/AOMediaCodec/SVT-AV1.git _extra/svt-av1
+    git clone --depth 1 --branch v3.1.2 https://gitlab.com/AOMediaCodec/SVT-AV1.git _extra/svt-av1
 fi
 
 if [ ! -e _build/$BuildDir/svt-av1/install_manifest.txt ]; then
@@ -97,9 +97,9 @@ if [ ! -e _build/$BuildDir/ffmpeg/Makefile ]; then
     cp -f patches/ffmpeg/mp3lame.pc $InstallDir/lib/pkgconfig/.
     cp -f patches/ffmpeg/unistd.h $InstallDir/include/.
 
-    cd _extra/ffmpeg
-    git apply ../../patches/ffmpeg/*.patch
-    cd ../..
+#    cd _extra/ffmpeg
+#    git apply ../../patches/ffmpeg/*.patch
+#    cd ../..
 
     mkdir _build/$BuildDir/ffmpeg
     cd _build/$BuildDir/ffmpeg

@@ -4,7 +4,7 @@ if [ ! -e _extra ]; then
     mkdir _extra
 fi
 if [ ! -e _extra/ffmpeg ]; then
-    git clone --depth 1 --branch n6.1.1 https://github.com/FFmpeg/FFmpeg.git _extra/ffmpeg
+    git clone --depth 1 --branch n8.0 https://github.com/FFmpeg/FFmpeg.git _extra/ffmpeg
 fi
 
 BuildType=Debug
