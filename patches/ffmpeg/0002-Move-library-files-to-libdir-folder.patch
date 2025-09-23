@@ -1,8 +1,17 @@
+From 2d45d762438b3cbfb12cc12936050c4038a6c576 Mon Sep 17 00:00:00 2001
+From: Ung Teng En <nobody@example.com>
+Date: Tue, 23 Sep 2025 09:00:02 +0800
+Subject: [PATCH 2/3] Move library files to libdir folder
+
+---
+ ffbuild/library.mak | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
 diff --git a/ffbuild/library.mak b/ffbuild/library.mak
-index 793e9d4..5d33114 100644
+index dee05c5..5b159fa 100644
 --- a/ffbuild/library.mak
 +++ b/ffbuild/library.mak
-@@ -82,9 +82,9 @@ install-lib$(NAME)-shared: $(SUBDIR)$(SLIBNAME)
+@@ -94,9 +94,9 @@ install-lib$(NAME)-shared: $(SUBDIR)$(SLIBNAME)
  	$$(INSTALL) -m 755 $$< "$(SHLIBDIR)/$(SLIB_INSTALL_NAME)"
  	$$(STRIP) "$(SHLIBDIR)/$(SLIB_INSTALL_NAME)"
  	$(Q)$(foreach F,$(SLIB_INSTALL_LINKS),(cd "$(SHLIBDIR)" && $(LN_S) $(SLIB_INSTALL_NAME) $(F));)
@@ -13,7 +22,7 @@ index 793e9d4..5d33114 100644
  
  install-lib$(NAME)-static: $(SUBDIR)$(LIBNAME)
  	$(Q)mkdir -p "$(LIBDIR)"
-@@ -103,7 +103,7 @@ uninstall-libs::
+@@ -115,7 +115,7 @@ uninstall-libs::
  	-$(RM) "$(SHLIBDIR)/$(SLIBNAME_WITH_MAJOR)" \
  	       "$(SHLIBDIR)/$(SLIBNAME)"            \
  	       "$(SHLIBDIR)/$(SLIBNAME_WITH_VERSION)"
@@ -22,3 +31,6 @@ index 793e9d4..5d33114 100644
  	-$(RM)  $(SLIB_INSTALL_EXTRA_LIB:%="$(LIBDIR)/%")
  	-$(RM) "$(LIBDIR)/$(LIBNAME)"
  
+-- 
+2.50.0.windows.1
+

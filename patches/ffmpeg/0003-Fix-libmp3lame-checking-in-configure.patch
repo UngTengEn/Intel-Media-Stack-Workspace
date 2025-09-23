@@ -1,8 +1,17 @@
+From d44fbe231459c408ee11df0346232eac31a2dc38 Mon Sep 17 00:00:00 2001
+From: Ung Teng En <nobody@example.com>
+Date: Tue, 23 Sep 2025 09:01:47 +0800
+Subject: [PATCH 3/3] Fix libmp3lame checking in configure
+
+---
+ configure | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 diff --git a/configure b/configure
-index 2fbe039..61bd090 100755
+index 732de59..77dc638 100755
 --- a/configure
 +++ b/configure
-@@ -6736,7 +6736,7 @@ if enabled libmfx; then
+@@ -7103,7 +7103,7 @@ if enabled libmfx; then
  fi
  
  enabled libmodplug        && require_pkg_config libmodplug libmodplug libmodplug/modplug.h ModPlug_Load
@@ -11,3 +20,6 @@ index 2fbe039..61bd090 100755
  enabled libmysofa         && { check_pkg_config libmysofa libmysofa mysofa.h mysofa_neighborhood_init_withstepdefine ||
                                 require libmysofa mysofa.h mysofa_neighborhood_init_withstepdefine -lmysofa $zlib_extralibs; }
  enabled libnpp            && { check_lib libnpp npp.h nppGetLibVersion -lnppig -lnppicc -lnppc -lnppidei -lnppif ||
+-- 
+2.50.0.windows.1
+

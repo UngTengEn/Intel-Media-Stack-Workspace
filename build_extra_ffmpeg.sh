@@ -98,7 +98,7 @@ if [ ! -e _build/$BuildDir/ffmpeg/Makefile ]; then
     cp -f patches/ffmpeg/unistd.h $InstallDir/include/.
 
 #    cd _extra/ffmpeg
-#    git apply ../../patches/ffmpeg/*.patch
+#    git am ../../patches/ffmpeg/00*.patch
 #    cd ../..
 
     mkdir _build/$BuildDir/ffmpeg
