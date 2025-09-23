@@ -1,7 +1,10 @@
+DirectX-Headers
 libva
 libva-utils
+media-driver
 mesa
 oneVPL
+oneVPL-intel-gpu
 _build
 _extra
 _install
