@@ -1,0 +1,42 @@
+From 3bf86727d30c0e5e56e3e4a6dac0b52729707f93 Mon Sep 17 00:00:00 2001
+From: Ung Teng En <nobody@example.com>
+Date: Tue, 23 Sep 2025 11:45:47 +0800
+Subject: [PATCH] Use direct path in pkg config PC file
+
+---
+ libvpl/CMakeLists.txt      | 4 ++++
+ libvpl/pkgconfig/vpl.pc.in | 6 +++---
+ 2 files changed, 7 insertions(+), 3 deletions(-)
+
+diff --git a/libvpl/CMakeLists.txt b/libvpl/CMakeLists.txt
+index 0419980..27456c5 100644
+--- a/libvpl/CMakeLists.txt
++++ b/libvpl/CMakeLists.txt
+@@ -182,6 +182,10 @@ if(INSTALL_DEV)
+   set(pc_rel_libdir "$\{pcfiledir}/${pc_rel_libdir}")
+   set(pc_rel_incdir "$\{pcfiledir}/${pc_rel_incdir}")
+ 
++  set(prefix "${CMAKE_INSTALL_PREFIX}")
++  set(libdir "${CMAKE_INSTALL_FULL_LIBDIR}")
++  set(includedir "${CMAKE_INSTALL_FULL_INCLUDEDIR}")
++
+   if(CMAKE_DL_LIBS)
+     set(DL_LIBS "-l${CMAKE_DL_LIBS}")
+   endif()
+diff --git a/libvpl/pkgconfig/vpl.pc.in b/libvpl/pkgconfig/vpl.pc.in
+index aa9b158..20c9e19 100644
+--- a/libvpl/pkgconfig/vpl.pc.in
++++ b/libvpl/pkgconfig/vpl.pc.in
+@@ -1,6 +1,6 @@
+-prefix=@pc_rel_prefix@
+-libdir=@pc_rel_libdir@
+-includedir=@pc_rel_incdir@
++prefix=@prefix@
++libdir=@libdir@
++includedir=@includedir@
+ 
+ Name: Intel(R) Video Processing Library
+ Description: Accelerated video decode, encode, and frame processing capabilities on Intel(R) GPUs
+-- 
+2.50.0.windows.1
+
